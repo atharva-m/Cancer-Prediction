@@ -8,6 +8,7 @@ from pathlib import Path
 import joblib
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import (
@@ -18,6 +19,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
+import pandas as pd
 
 def main():
     parser = argparse.ArgumentParser()
@@ -100,6 +102,26 @@ def main():
     disp = ConfusionMatrixDisplay(cm, display_labels=data.target_names)
     disp.plot(cmap="Blues")
     plt.savefig("reports/confusion_matrix.png", dpi=300, bbox_inches="tight")
+    plt.close()
+
+    # Feature Importances plot
+    if args.model == "rf":
+        feature_importances = best.named_steps['clf'].feature_importances_
+        feature_names = X_train.columns
+        # Create a DataFrame for plotting
+        feat_imp_df = pd.DataFrame({
+            'Feature': feature_names,
+            'Importance': feature_importances
+        })
+        feat_imp_df = feat_imp_df.sort_values(by='Importance', ascending=False)
+        plt.figure(figsize=(10, 8))
+        sns.barplot(x='Importance', y='Feature', data=feat_imp_df, palette='viridis')
+        plt.title('Feature Importances')
+        plt.xlabel('Importance')
+        plt.ylabel('Feature')
+        plt.tight_layout()
+        plt.savefig("reports/feature_importances.png", dpi=300, bbox_inches="tight")
+        plt.close()
 
     # Save metrics and model
     Path(args.out_report).write_text(json.dumps(metrics, indent=2))
