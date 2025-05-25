@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # train.py — Train a Random Forest or SVC on the Breast Cancer dataset with optional top-15 feature subset
 
 import argparse
