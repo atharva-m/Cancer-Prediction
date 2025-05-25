@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # evaluate.py — Load & evaluate a saved model.
 
 import argparse
