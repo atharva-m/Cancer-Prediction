@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # predict.py — Batch inference on new CSV data.
 
 import argparse
