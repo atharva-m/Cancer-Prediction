@@ -1,7 +1,7 @@
 
 # 🩺 Cancer Prediction with Classical Machine‑Learning
 
-![Python](https://img.shields.io/badge/Python-3.10-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.13-blue.svg)
 ![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)
 ![Status](https://img.shields.io/badge/status-stable-brightgreen)
 
